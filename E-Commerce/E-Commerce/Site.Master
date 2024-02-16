@@ -1,0 +1,40 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="E_Commerce.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet" />
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <div class="navbar bg-dark position-fixed w-100" style="z-index:10">
+                <div class="container-fluid">
+                    <a href="Default.aspx" class="navbar-brand text-white">Shoes Planet</a>
+                    <a href="Default.aspx" class="navbar-brand text-white fs-3 fw-bolder">SHOES ONLY SHOES</a>
+                    <div class="d-flex align-items-center  text-white" >
+                        <asp:Button ID="LabelCarrelloAggiungi" CssClass="btn btn-warning mx-1" Visible="false" Text="Aggiungi al Carrello" OnClick="LabelCarrelloAggiungi_Click" runat="server" />
+                        <asp:Label ID="LabelCarrelloNumeroArticoli" CssClass="btn btn-secondary mx-1" Text="0" Value="0" runat="server" ></asp:Label>
+                        <asp:Label ID="LabelCarrelloTotale" CssClass="btn btn-success mx-1" Text="0" Value="0"  runat="server" > € </asp:Label>
+                        <a href="Carrello.aspx" class="btn ms-2 btn-outline-info mx-1">🛒</a>
+                        <asp:Button ID="ResettaCarrello" CssClass="btn btn-danger mx-1" Text="DEL" runat="server" OnClick="ResettaCarrello_Click" />
+                    </div>
+                </div>
+            </div>
+            <br />
+            
+            <br />
+            <br />
+            <br />
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"> </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>
