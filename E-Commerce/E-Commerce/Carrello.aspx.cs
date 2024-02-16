@@ -7,30 +7,27 @@ namespace E_Commerce
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //al caricamento della pagina aggiorna la griglia con i prodotti presenti nel carrello e il totale
-            GridCarrello.DataSource = Shoes.ListaCarrello;
-            GridCarrello.DataBind();
+            // Aggiorna la griglia con i prodotti presenti nel carrello e il totale al caricamento della pagina
+            RepeaterCarrello.DataSource = Shoes.ListaCarrello;
+            RepeaterCarrello.DataBind();
             double prezzoCarrelloTotale = 0;
             foreach (Shoes shoes in Shoes.ListaCarrello)
             {
-                prezzoCarrelloTotale += shoes.Price; ;
+                prezzoCarrelloTotale += shoes.Price;
             }
             totale.InnerHtml = prezzoCarrelloTotale.ToString() + " €";
         }
 
-        //funzione che rimuove il prodotto dal carrello
-        protected void btnRimuovi_Click(object sender, EventArgs e)
+        // Rimuove il prodotto dal carrello
+        protected void Button1_Click(object sender, EventArgs e)
         {
-
             string idShoes = (sender as Button).CommandArgument;
-            foreach (Shoes shoes in Shoes.ListaCarrello)
+            Shoes shoesToRemove = Shoes.ListaCarrello.Find(shoes => shoes.ID.ToString() == idShoes);
+            if (shoesToRemove != null)
             {
-                if (idShoes == shoes.ID.ToString())
-                {
-                    Shoes.ListaCarrello.Remove(shoes);
-                }
+                Shoes.ListaCarrello.Remove(shoesToRemove);
+                Response.Redirect("Carrello");
             }
         }
-
     }
 }

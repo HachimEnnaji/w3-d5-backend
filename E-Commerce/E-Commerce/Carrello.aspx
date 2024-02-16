@@ -1,21 +1,20 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Carrello.aspx.cs" Inherits="E_Commerce.Carrello" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Carrello.aspx.cs" Inherits="E_Commerce.Carrello" EnableEventValidation="false" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server" >
 <h2 class="m-3">Carrello</h2>
      
-    <asp:GridView ID="GridCarrello" CssClass="table table-light m-3" AutoGenerateColumns="false" runat="server" ItemType="E-commerce.Shoes.ListaCarrello">
-        <Columns>
-
-            
-            <asp:BoundField DataField="Name" HeaderText="Nome Shoes" />
-            <asp:BoundField DataField="Color" HeaderText="Colore" />
-            <asp:BoundField DataField="Brand" HeaderText="Brand" />
-            <asp:BoundField DataField="Price" HeaderText="Da pagare" />
-        
-
-        </Columns>
-    </asp:GridView>
+    <asp:Repeater ID="RepeaterCarrello" runat="server" >
+        <ItemTemplate>
+            <div class="m-3">
+                <h4><%# Eval("Name") %></h4>
+                <p>Colore: <%# Eval("Color") %></p>
+                <p>Brand: <%# Eval("Brand") %></p>
+                <p>Da pagare: <%# Eval("Price") %></p>
+                <asp:Button ID="Button1" runat="server" Text="Rimuovi" CssClass="btn btn-danger" OnClick="Button1_Click" CommandArgument='<%# Eval("Id") %>' />
+            </div>
+        </ItemTemplate>
+    </asp:Repeater>
     <hr class="m-3" />
     <h1 class="m-3">Totale: <span id="totale" class="display-5" runat="server"></span></h1>
 </asp:Content>
