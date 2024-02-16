@@ -22,6 +22,7 @@ namespace E_Commerce
         protected void Button1_Click(object sender, EventArgs e)
         {
             string idShoes = (sender as Button).CommandArgument;
+            // trova il prodotto da rimuovere dal carrello con il find method
             Shoes shoesToRemove = Shoes.ListaCarrello.Find(shoes => shoes.ID.ToString() == idShoes);
             if (shoesToRemove != null)
             {
